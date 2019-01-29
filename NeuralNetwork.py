@@ -1,4 +1,6 @@
-#!~/anaconda3/bin/python
+#!/home/jptboy/anaconda3/bin/python
 class NeuralNetwork:
-    pass
+    def __init__(self): pass
+    def test(self,weights,heights,labels): pass
+    def train(self,weights,heights,labels): pass
 

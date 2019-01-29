@@ -11,12 +11,14 @@ def train(data):
     heights = data[1]
     labels = data[2]
     
-    
+    net.train(weights,heights,labels)
+
 def test(data):
     weights = data[0]
     heights = data[1]
     labels = data[2]
 
+    net.test(weights,heights,labels)
 def main():
     assert len(sys.argv) == 3, "Please input valid data size, and whether or not you want to plot"
     DATA_SIZE = int(sys.argv[1])
