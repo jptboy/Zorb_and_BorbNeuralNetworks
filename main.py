@@ -11,7 +11,9 @@ def train(data):
     heights = data[1]
     labels = data[2]
     
-    net.train(weights,heights,labels)
+    print(net.getWeightsandBias())
+    net.train(weights,heights,labels, debug = True)
+    print(net.getWeightsandBias())
 
 def test(data):
     weights = data[0]
@@ -22,17 +24,18 @@ def test(data):
 def main():
     assert len(sys.argv) == 3, "Please input valid data size, and whether or not you want to plot"
     DATA_SIZE = int(sys.argv[1])
-    if sys.argv[2] == "plot": plot()
-    elif sys.argv[2] == "gen": gen(DATA_SIZE)
-    elif sys.argv[2] == "train":
+    cmd = sys.argv[2]
+    if cmd == "plot": plot()
+    elif cmd == "gen": gen(DATA_SIZE)
+    elif cmd == "train":
         data = getData()
         train(data)
-    elif sys.argv[2] == "gen_test": gen_test(DATA_SIZE)
-    elif sys.argv[2] == "test":
+    elif cmd == "gen_test": gen_test(DATA_SIZE)
+    elif cmd == "test":
         data = getData_test()#weights, heights, labels
         test(data)
-    elif sys.argv[2] == "plot_test": plot_test()
-    elif sys.argv[2] == "run": pass
+    elif cmd == "plot_test": plot_test()
+    elif cmd == "run": pass
     else: print("Please enter valid option",file = sys.stderr)
 
 if __name__ == '__main__':
