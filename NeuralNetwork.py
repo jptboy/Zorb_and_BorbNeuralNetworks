@@ -17,6 +17,9 @@ class NeuralNetwork:
         self.__weight1 = np.random.randn()
         self.__bias = np.random.randn()
         self.__weight2 = np.random.randn()
+    
+    def classify(self,weight1,weight2,bias,mass,height):
+        return self.__sigmoid((weight1*mass + weight2*height) + bias)
 
     def test(self,weights,heights,labels,graph = False): 
         data = np.array(list(zip(weights,heights,labels)))
@@ -94,7 +97,7 @@ class NeuralNetwork:
             self.__weight1 -= learning_rate * d_cost_d_w1
             self.__weight2 -= learning_rate * d_cost_d_w2
             self.__bias -= learning_rate * d_cost_d_bias
-        save = np.array([self.__weight1,self.__weight2,self.__bias])
+        save = np.array([[self.__weight1,self.__weight2,self.__bias]])
         np.savetxt("weights.csv",save,delimiter=',')
         if debug: 
             plt.plot(costs)

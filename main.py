@@ -12,7 +12,7 @@ def train(data):
     labels = data[2]
     
     print(net.getWeightsandBias())
-    net.train(weights,heights,labels, debug = True)
+    net.train(weights,heights,labels)
     print(net.getWeightsandBias())
 
 def test(data):
@@ -20,7 +20,32 @@ def test(data):
     heights = data[1]
     labels = data[2]
 
-    net.test(weights,heights,labels)
+    with open("weights.csv","r") as f:
+        contents = f.read()
+    contents = list(map(float,contents.split(",")))
+    w1 = contents[0]
+    w2 = contents[1]
+    bias = contents[2]
+
+    net.setWeightsAndBias(w1,w2,bias)
+
+    cost = net.test(weights,heights,labels)
+    print("Average cost is %s" % (cost))
+def run():
+    with open("weights.csv","r") as f:
+        contents = f.read()
+    contents = list(map(float,contents.split(",")))
+    w1 = contents[0]
+    w2 = contents[1]
+    bias = contents[2]
+    weight = float(input("Weight:\n"))
+    height = float(input("Height:\n"))
+    ret = net.classify(w1,w2,bias,weight,height)
+    if ret < 0.5: os.system("say ZORB")#value closer to 0, below the 80/x curve
+    else: os.system("say BORB") #value closer to 1, over the 80/x curve 
+
+    
+
 def main():
     assert len(sys.argv) == 3, "Please input valid data size, and whether or not you want to plot"
     DATA_SIZE = int(sys.argv[1])
@@ -35,7 +60,8 @@ def main():
         data = getData_test()#weights, heights, labels
         test(data)
     elif cmd == "plot_test": plot_test()
-    elif cmd == "run": pass
+    elif cmd == "run":
+        run()
     else: print("Please enter valid option",file = sys.stderr)
 
 if __name__ == '__main__':
