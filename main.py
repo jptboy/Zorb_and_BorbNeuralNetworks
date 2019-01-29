@@ -5,6 +5,7 @@ from NeuralNetwork import NeuralNetwork
 import sys
 import os
 net = NeuralNetwork()
+#good weights 1.376251933672288263e+00,1.463446384097069508e+00,-2.715993104639005651e+01
 
 def train(data):
     weights = data[0]

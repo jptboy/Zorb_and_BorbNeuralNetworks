@@ -48,6 +48,9 @@ class NeuralNetwork:
         return val * (1 - val)
 
     def train(self,weights,heights,labels,debug = False):
+        self.__weight1 = np.random.randn()
+        self.__bias = np.random.randn()
+        self.__weight2 = np.random.randn()
         data = np.array(list(zip(weights,heights,labels)))
         learning_rate = 0.01
         if debug: costs = []
