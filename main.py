@@ -7,13 +7,13 @@ import os
 net = NeuralNetwork()
 #good weights 1.376251933672288263e+00,1.463446384097069508e+00,-2.715993104639005651e+01
 
-def train(data):
+def train(data,debug_ = False):
     weights = data[0]
     heights = data[1]
     labels = data[2]
     
     print(net.getWeightsandBias())
-    net.train(weights,heights,labels)
+    net.train(weights,heights,labels,debug=debug_)
     print(net.getWeightsandBias())
 
 def test(data):
@@ -56,6 +56,9 @@ def main():
     elif cmd == "train":
         data = getData()
         train(data)
+    elif cmd == "train_plt":
+        data = getData()
+        train(data,debug_= True)
     elif cmd == "gen_test": gen_test(DATA_SIZE)
     elif cmd == "test":
         data = getData_test()#weights, heights, labels
