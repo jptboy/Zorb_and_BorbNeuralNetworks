@@ -44,7 +44,7 @@ def run():
     ret = net.classify(w1,w2,bias,weight,height)
     if ret < 0.5: os.system("say ZORB")#value closer to 0, below the 80/x curve
     else: os.system("say BORB") #value closer to 1, over the 80/x curve 
-
+    print(ret)
     
 
 def main():
